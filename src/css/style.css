@@ -1,0 +1,16 @@
+nav {
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 10px;
+}
+nav a:first-child {
+    margin-left: 0;
+}
