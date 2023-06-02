@@ -26,12 +26,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
 
     <?php require_once __DIR__ . '/app/templates/navbar.php' ?>
-
-    <form enctype="multipart/form-data" method="post" action="<?php echo $_SERVER['PHP_SELF'] ?>">
-        <p><input type="file" name="pictureFile">
-            <input type="submit" value="Загрузить ">
-        </p>
-    </form>
+    <?php if ($_SESSION['loggedin']) { ?>
+        <form enctype="multipart/form-data" method="post" action="<?php echo $_SERVER['PHP_SELF'] ?>">
+            <p><input type="file" name="pictureFile">
+                <input type="submit" value="Загрузить ">
+            </p>
+        </form>
+        <?php
+    }
+    else {
+        echo '<h3>Вам нужно авторизоваться, чтобы загружать картинки на сайт.</h3>';
+    }
+    ?>
 </body>
 
 </html>
