@@ -58,7 +58,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                 registerUser($dbConnection, $_POST['username'], $password);
 
-                header('Location: signin.php');
+                header('Location: login.php');
+                die;
             }
             catch (RegisterFailException $exception) {
                 setErrorMessage($exception->getMessage());
@@ -85,7 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <?php getErrorMessage() ?>
 
-    <p><a href="/signin.php">Есть аккаунт, войти</a></p>
+    <p><a href="/login.php">Есть аккаунт, войти</a></p>
 
 </body>
 

@@ -30,6 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 loginUser($dbConnection, $_POST['username'], $_POST['password']);
 
                 header('Location: index.php');
+                die;
             }
             catch (LoginFailException $exception) {
                 setErrorMessage($exception->getMessage());
