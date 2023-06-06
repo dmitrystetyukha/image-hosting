@@ -36,16 +36,5 @@ services:
     ports:
       - "3306:3306"
 
-  memcashed:
-    image: memcached
-    ports:
-      - "11211:11211"
-    networks:
-    - image-hosting
-
 networks:
   image-hosting:
-
-# volumes:
-#   image-hosting-apache:
-#   db:
