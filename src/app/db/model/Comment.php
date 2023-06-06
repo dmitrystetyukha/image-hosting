@@ -1,6 +1,9 @@
 <?php
+namespace app\db\model;
 
-namespace app\models;
+use app\db\model\Picture;
+use app\db\model\User;
+use app\utils\UUID;
 
 use DateTime;
 
@@ -15,15 +18,15 @@ class Comment
     private DateTime $creationTime;
     private DateTime $updateTime;
 
-    public function __construct($id, User $user, Picture $picture, $commentText, $edited, DateTime $creationTime, DateTime $updateTime)
+    public function __construct(?string $id, User $user, Picture $picture, string $commentText, bool $edited, DateTime $creationTime, DateTime $updateTime)
     {
-        $this->id           = $id;
-        $this->user         = $user;
-        $this->picture      = $picture;
-        $this->commentText  = $commentText;
-        $this->edited       = $edited;
-        $this->creationTime = $creationTime;
-        $this->updateTime   = $updateTime;
+        $this->$id           = (is_null($id) ? UUID::v4() : $id);
+        $this->$user         = $user;
+        $this->$picture      = $picture;
+        $this->$commentText  = $commentText;
+        $this->$edited       = $edited;
+        $this->$creationTime = $creationTime;
+        $this->$updateTime   = $updateTime;
     }
 
     /**

@@ -1,12 +1,12 @@
 <?php
-
-namespace app\models;
+namespace app\db\model;
 
 use DateTime;
 
+use app\utils\UUID;
+
 class Picture
 {
-
     private string $id;
     private User $user;
     private string $filePath;
@@ -18,19 +18,18 @@ class Picture
     private int $numOfComments;
 
     public function __construct(
-        string $id, User $user, string $filePath, ?string $header, string $description,
-        int $views, string $mdHash, DateTime $uploadTime, int $commentCount
-    )
-    {
-        $this->id            = $id;
+        ?string $id, User $user, string $filePath, string $name, string $description, int $numOfViews, string $mdHash, DateTime $uploadTime, int $numOfComments
+    ) {
+        $this->id            = (is_null($id)) ? UUID::v4() : $id;
         $this->user          = $user;
         $this->filePath      = $filePath;
-        $this->name          = $header;
+        $this->name          = $name;
         $this->description   = $description;
-        $this->numOfViews    = $views;
+        $this->numOfViews    = $numOfViews;
         $this->mdHash        = $mdHash;
         $this->uploadTime    = $uploadTime;
-        $this->numOfComments = $commentCount;
+        $this->numOfComments = $numOfComments;
+
     }
 
     /**
@@ -42,7 +41,7 @@ class Picture
     }
 
     /**
-     * @return User
+     * @return User 
      */
     public function getUser(): User
     {

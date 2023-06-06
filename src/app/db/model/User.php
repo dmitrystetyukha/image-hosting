@@ -1,6 +1,7 @@
 <?php
+namespace app\db\model;
 
-namespace app\models;
+use app\utils\UUID;
 
 class User
 {
@@ -8,15 +9,12 @@ class User
     private string $id;
     private string $name;
     private string $password;
-    private string $salt;
 
-    public function __construct(string $id, string $username, string $password, string $salt)
+    public function __construct(?string $id, string $name, string $password)
     {
-
-        $this->id       = $id;
-        $this->name     = $username;
-        $this->password = $password;
-        $this->salt     = $salt;
+        $this->id       = (is_null($id)) ? UUID::v4() : $id;
+        $this->name     = $name;
+        $this->password = password_hash($password, PASSWORD_BCRYPT);
     }
 
     /**
@@ -42,13 +40,4 @@ class User
     {
         return $this->password;
     }
-
-    /**
-     * @return string
-     */
-    public function getSalt(): string
-    {
-        return $this->salt;
-    }
-
 }
